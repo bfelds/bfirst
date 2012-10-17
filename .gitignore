@@ -4,3 +4,5 @@
 *.jar
 *.war
 *.ear
+=======
+/First Examples/BasicRobot/build/
