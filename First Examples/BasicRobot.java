@@ -3,7 +3,7 @@
 //robot code
 package edu.wpi.first.wpilibj.templates;
 
-//import tells the program which components we'll need information on
+//import tells the program which components we'll need information 
 //import all information about "Joystick" for example
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -65,6 +65,7 @@ public class BasicRobot extends SimpleRobot {
          * Once the referees start the match, the code inside of these curly
          * braces will run. 
          */
+	this.getWatchdog().setEnabled(false);
     }
 
     /**
@@ -73,7 +74,9 @@ public class BasicRobot extends SimpleRobot {
      * the rest of the round. 
      */
     public void operatorControl() {        
+        this.getWatchdog().setEnabled(true); //ignore
         while(this.isEnabled() && this.isOperatorControl()) {
+	    this.getWatchdog().feed(); //ignore
             /*
              * "while" is a type of "loop"
              * so for now the above says:
