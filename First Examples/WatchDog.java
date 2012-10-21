@@ -1,77 +1,54 @@
 
-//package tells the program what "package" of files has the
-//robot code
+/*This is the same project from BasicRobot.java but
+ *this time we'll discuss the Watchdog!
+ *So what is the watchdog? 
+ *The watchdog is there to make sure our robot operates
+ *safely. Basically, every once in a while, we need to tell the 
+ *watchdog that we are doing okay in our program, or the watchdog 
+ *will shut down the robot. 
+ *This is helpful, for instance if our program malfunctions and gets 
+ *stuck, the watchdog will shut down the robot so that the motors or 
+ *pneumantics don't go haywire!
+ *Remember safety FIRST, and the watchdog is ALLLL about safety. 
+ */
+
 package edu.wpi.first.wpilibj.templates;
 
-//import tells the program which components we'll need information 
-//import all information about "Joystick" for example
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SimpleRobot;
 
-
-//this is your robot, say hi to "BasicRobot"
-//hmmm...maybe it needs a better name
-//anyways extends is a quick way of saying BasicRobot has a
-//parent named "SimpleRobot"
 public class BasicRobot extends SimpleRobot {
 
-    /*
-     * after we've named our robot, it's time to 
-     * say what parts it has:
-     */
-    
-    /*
-     * first it has a drive train, here called "RobotDrive"
-     * our BasicRobot has 2 motors, it's left motor is plugged
-     * into the digital sidecar port 1, and the right into port 2
-     */
     RobotDrive robotDrive = new RobotDrive(1,2);
-    /*
-     * Later when we want to add more parts we'll put them here!
-     */
-    
-    /*
-     * Now that we know what the robot is made of, it's time
-     * to tell our program how we will be controlling it!
-     * We plugged in 2 joysticks into the computer in usb ports 1
-     * and 2, so below we'll tell the program about them.
-     */
+
     Joystick leftJoystick = new Joystick(1);
     Joystick rightJoystick = new Joystick(2);
     
-    
-    /*
-     * Now it's time to get started!! Quite literally in fact.
-     * When you turn on your robot, it likes to first thing about itself!
-     * The below function is called a "constructor", but simply, it's
-     * the first code to run when you start the robot.
-     */
     public BasicRobot(){
         /*
-         * What's a watchdog? What's going on? This is a safety
-         * (SAFETY FIRST) thing. Let's cover it a little later. 
+         * This is the first place we'll use the watchdog, now you'll
+	 * need to write the below lines (they don't happen automatically).
+	 * There are 2 things we can do with the watchdog:
+ 	 * 1. Turn it on and off
+	 * 2. Feed it!
          */
+	    //This is how we turn it off
+        this.getWatchdog().setEnabled(false);
+	    //This is how we turn it on
         this.getWatchdog().setEnabled(true);
+	    //Let's leave it on for now
+		
     }
     
-    /**
-     * Autonomous mode! Finally something that we've heard before!
-     * 
-     */
     public void autonomous() {
         /*
-         * Once the referees start the match, the code inside of these curly
-         * braces will run. 
+         * Here we turn off the watchdog, but we'll cover why
+         * we do this in the later tutorial on autonomous mode.
          */
-	this.getWatchdog().setEnabled(false);
+	    this.getWatchdog().setEnabled(false);
     }
 
-    /**
-     * Now that autonomous mode is over, it's time to start driving!
-     * In Operator Control, we'll place all the code we need during
-     * the rest of the round. 
-     */
     public void operatorControl() {        
         this.getWatchdog().setEnabled(true); //ignore
         while(this.isEnabled() && this.isOperatorControl()) {
